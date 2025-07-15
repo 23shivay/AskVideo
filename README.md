@@ -51,5 +51,9 @@ pip install -r requirements.txt
 GROQ_API_KEY=your_groq_api_key
 
 NEO4J_URI=neo4j+s://your_neo4j_uri
+
+
 NEO4J_USERNAME=neo4j
+
+
 NEO4J_PASSWORD=your_password
