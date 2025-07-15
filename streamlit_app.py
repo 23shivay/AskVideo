@@ -2,11 +2,12 @@
 import streamlit as st
 import requests
 import base64
+from youtube_transcript_api import YouTubeTranscriptApi
 
-API_BASE_URL = "https://askvideo.onrender.com"  # Change this if you're deploying elsewhere
+API_BASE_URL = "https://askvideo.onrender.com"  # Production backend URL
 
-st.set_page_config(page_title="AskVideo", layout="wide")
-st.title("🎥 AskVideo - Smart Video Analysis")
+st.set_page_config(page_title="VidInsights.ai", layout="wide")
+st.title("🎥 VidInsights.ai - Smart Video Analysis")
 
 menu = st.sidebar.radio("Choose action", [
     "📹 Process Video",
@@ -23,12 +24,21 @@ if menu == "📹 Process Video":
     style = st.selectbox("Summary Style", ["formal", "casual", "technical", "conversational"])
 
     if st.button("Generate Summary"):
-        with st.spinner("Processing video and generating summary..."):
+        try:
+            video_id = video_url.split("v=")[-1]
+            transcript = YouTubeTranscriptApi.get_transcript(video_id)
+            transcript_text = " ".join([x["text"] for x in transcript])
+        except Exception as e:
+            st.error(f"Could not fetch transcript: {e}")
+            st.stop()
+
+        with st.spinner("Sending transcript to backend for analysis..."):
             res = requests.post(f"{API_BASE_URL}/process-video", json={
                 "video_url": video_url,
                 "language": language,
                 "word_count": word_count,
-                "style": style
+                "style": style,
+                "transcript_text": transcript_text
             })
             if res.ok:
                 st.success("Summary Generated ✅")
