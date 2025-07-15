@@ -22,7 +22,7 @@ app = FastAPI()
 # Enable CORS for all origins
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*","http://localhost:5173"],
+    allow_origins=["*","https://askvideo-5tta2adheqpwaujmp4fia7.streamlit.app/"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
