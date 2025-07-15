@@ -3,7 +3,7 @@ import streamlit as st
 import requests
 import base64
 
-API_BASE_URL = "http://localhost:8000"  # Change this if you're deploying elsewhere
+API_BASE_URL = "https://askvideo.onrender.com"  # Change this if you're deploying elsewhere
 
 st.set_page_config(page_title="AskVideo", layout="wide")
 st.title("🎥 VidInsights.ai - Smart Video Analysis")
