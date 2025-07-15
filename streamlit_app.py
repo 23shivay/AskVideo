@@ -6,7 +6,7 @@ import base64
 API_BASE_URL = "https://askvideo.onrender.com"  # Change this if you're deploying elsewhere
 
 st.set_page_config(page_title="AskVideo", layout="wide")
-st.title("🎥 VidInsights.ai - Smart Video Analysis")
+st.title("🎥 AskVideo - Smart Video Analysis")
 
 menu = st.sidebar.radio("Choose action", [
     "📹 Process Video",
